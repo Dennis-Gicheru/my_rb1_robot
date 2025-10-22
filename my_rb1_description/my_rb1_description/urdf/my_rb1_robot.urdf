@@ -4,8 +4,11 @@
 <!-- Specify Gazebo color for the base_link -->
 <gazebo reference="base_link">
     <visual>
-        <material name="black"> <!-- Black -->
-            <color rgba="0 0 0 1"/> 
+        <material> <!-- Black -->
+            <ambient>0.1 0.1 0.1 1.0</ambient>
+            <diffuse>0.1 0.1 0.1 1.0</diffuse>
+            <specular>0.0 0.0 0.0 1.0</specular>
+            <emissive>0.0 0.0 0.0 1.0</emissive>
         </material>
     </visual>
 </gazebo>
