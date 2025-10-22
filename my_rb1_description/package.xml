@@ -3,9 +3,9 @@
 <package format="3">
   <name>my_rb1_description</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>My cylinder robot</description>
   <maintainer email="dennisgicheru254@gmail.com">user</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache-2.0</license>
 
   <depend>urdf</depend>
   <depend>xacro</depend>

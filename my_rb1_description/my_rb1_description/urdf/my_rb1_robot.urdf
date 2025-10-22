@@ -257,4 +257,96 @@
         <child link="front_laser"/>
         <origin xyz="0.25 0.0 0.075" rpy="3.14159265 0 0"/>
     </joint>
+    <!-- Differential Drive Plugin -->
+<gazebo>
+    <plugin
+        filename="libignition-gazebo-diff-drive-system.so"
+        name="ignition::gazebo::systems::DiffDrive">
+        <left_joint>base_link_left_wheel_joint</left_joint>
+        <right_joint>base_link_right_wheel_joint</right_joint>
+        <wheel_separation>1.66</wheel_separation>
+        <wheel_radius>0.4</wheel_radius>
+        <odom_publish_frequency>20</odom_publish_frequency>
+        <topic>cmd_vel</topic>
+        <odom_topic>odom</odom_topic>
+        <tf_topic>tf</tf_topic>
+        <frame_id>odom</frame_id>
+        <child_frame_id>base_link</child_frame_id>
+    </plugin>
+</gazebo>
+
+<!-- Gazebo tags - Laser scan -->
+<gazebo reference="joint_laser_scan_chassis">
+    <preserveFixedJoint>true</preserveFixedJoint>
+</gazebo>
+<gazebo reference="link_laser_scan">
+    <material>Gazebo/DarkGrey</material>
+</gazebo>
+
+<!-- Laser scan -->
+<joint name="joint_laser_scan_chassis" type="fixed">
+    <origin rpy="0 0 0" xyz="0.8 0 0.3" />
+    <child link="front_laser" />
+    <parent link="base_link" />
+    <joint_properties damping="1.0" friction="1.0" />
+</joint>
+<link name="link_laser_scan">
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.5" />
+        <inertia ixx="0.000252666666667" ixy="0" ixz="0" iyy="0.000252666666667" iyz="0" izz="0.0005"/>
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <cylinder radius="0.15" length="0.20"/>
+        </geometry>
+        <material name="Red">
+            <color rgba="0.7 0.1 0.1 1" />
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="0.15" length="0.20"/>
+        </geometry>
+    </collision>
+</link>
+      <!-- Gazebo tags - Laser scan -->
+<gazebo reference="joint_laser_scan_chassis">
+    <preserveFixedJoint>true</preserveFixedJoint>
+</gazebo>
+<gazebo reference="link_laser_scan">
+    <material>Gazebo/DarkGrey</material>
+</gazebo>
+
+<!-- Laser scan -->
+<joint name="joint_laser_scan_chassis" type="fixed">
+    <origin rpy="0 0 0" xyz="0.8 0 0.3" />
+    <child link="front_lase" />
+    <parent link="base_link" />
+    <joint_properties damping="1.0" friction="1.0" />
+</joint>
+<link name="link_laser_scan">
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.5" />
+        <inertia ixx="0.000252666666667" ixy="0" ixz="0" iyy="0.000252666666667" iyz="0" izz="0.0005"/>
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <cylinder radius="0.15" length="0.20"/>
+        </geometry>
+        <material name="Red">
+            <color rgba="0.7 0.1 0.1 1" />
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <cylinder radius="0.15" length="0.20"/>
+        </geometry>
+    </collision>
+</link>
 </robot>
