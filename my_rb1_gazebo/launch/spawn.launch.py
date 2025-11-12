@@ -7,36 +7,28 @@ from launch_ros.actions import Node, SetParameter
 from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
-    # Locate the description package
     package_description = "my_rb1_description"
     package_directory = get_package_share_directory(package_description)
-
-    # Path to URDF
     urdf_file = 'my_rb1_robot.urdf'
     robot_desc_path = os.path.join(package_directory, "urdf", urdf_file)
 
-    # Robot State Publisher node
+    # Robot State Publisher
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        name='robot_state_publisher_node',
+        name='robot_state_publisher',
         output='screen',
-        emulate_tty=True,
         parameters=[{
             'use_sim_time': True,
-            'robot_description': ParameterValue(
-                Command(['cat ', robot_desc_path]),
-                value_type=str
-            )
+            'robot_description': ParameterValue(Command(['cat ', robot_desc_path]), value_type=str)
         }]
     )
 
-    # Declare spawn position arguments
+    # Spawn robot in Gazebo
     declare_spawn_x = DeclareLaunchArgument("x", default_value="0.0")
     declare_spawn_y = DeclareLaunchArgument("y", default_value="0.0")
     declare_spawn_z = DeclareLaunchArgument("z", default_value="0.5")
 
-    # Spawn entity in Gazebo
     gz_spawn_entity = Node(
         package="ros_gz_sim",
         executable="create",
@@ -52,23 +44,27 @@ def generate_launch_description():
         output="screen",
     )
 
-    # ROS–Gazebo bridge
-    ign_bridge = Node(
+    # Bridge Gazebo
+    bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        name="ign_bridge",
+        name="gz_bridge",
         arguments=[
-            "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock]",
+            "/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+            "/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V",
+            "/odom@nav_msgs/msg/Odometry@ignition.msgs.Odometry",
             "/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist",
-            "/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V]",
-            "/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry]",
-            "/laser/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan]",
-            "/imu@sensor_msgs/msg/Imu[ignition.msgs.IMU]",
+            "/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
         ],
-        output="screen",
+        output="screen"
     )
 
-    # ✅ Return LaunchDescription (must be the last statement)
+    lidar_tf = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        arguments=["0.25", "0.0", "0.075", "3.1416", "0", "0", "base_link", "front_laser"]
+    )
+
     return LaunchDescription([
         SetParameter(name="use_sim_time", value=True),
         declare_spawn_x,
@@ -76,5 +72,6 @@ def generate_launch_description():
         declare_spawn_z,
         robot_state_publisher_node,
         gz_spawn_entity,
-        ign_bridge,
+        bridge,
+        lidar_tf,
     ])
