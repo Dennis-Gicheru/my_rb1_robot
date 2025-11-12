@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" ?>
 <robot name="rb1_robot">
 
@@ -68,6 +69,14 @@
 
   <!-- Define materials for visualization (rgba values 0..1) -->
   <material name="blue">
+=======
+<?xml version="1.0"?>
+<robot name="rb1_robot">
+
+  <!-- ===== Materials ===== -->
+  <material name="blue">
+    <!-- rgba values must be 0..1 -->
+>>>>>>> spawnrb2
     <color rgba="0 0 1 1"/>
   </material>
 
@@ -83,17 +92,28 @@
     <color rgba="0 0 0 1"/>
   </material>
 
+<<<<<<< HEAD
   <!-- Base footprint link -->
   <link name="base_footprint"/>
 
   <!-- Joint connecting base_link and base_footprint -->
+=======
+  <!-- ===== Base footprint (self-closing link) ===== -->
+  <link name="base_footprint"/>
+
+  <!-- ===== Joint connecting base_footprint -> base_link ===== -->
+>>>>>>> spawnrb2
   <joint name="base_link_plate_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <origin xyz="0 0 0.15" rpy="0 0 0"/>
   </joint>
 
+<<<<<<< HEAD
   <!-- Base link -->
+=======
+  <!-- ===== Base link ===== -->
+>>>>>>> spawnrb2
   <link name="base_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -106,7 +126,11 @@
       <geometry>
         <cylinder radius="0.25" length="0.30"/>
       </geometry>
+<<<<<<< HEAD
       <material name="blue"/>
+=======
+      <material name="gray"/>
+>>>>>>> spawnrb2
     </visual>
 
     <collision>
@@ -117,7 +141,11 @@
     </collision>
   </link>
 
+<<<<<<< HEAD
   <!-- Left wheel link -->
+=======
+  <!-- ===== Left wheel ===== -->
+>>>>>>> spawnrb2
   <link name="left_wheel">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -141,7 +169,10 @@
     </collision>
   </link>
 
+<<<<<<< HEAD
   <!-- Joint connecting base_link and left_wheel -->
+=======
+>>>>>>> spawnrb2
   <joint name="base_link_left_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="left_wheel"/>
@@ -149,7 +180,11 @@
     <axis xyz="0 1 0"/>
   </joint>
 
+<<<<<<< HEAD
   <!-- Right wheel link -->
+=======
+  <!-- ===== Right wheel ===== -->
+>>>>>>> spawnrb2
   <link name="right_wheel">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -162,6 +197,10 @@
       <geometry>
         <cylinder radius="0.025" length="0.04"/>
       </geometry>
+<<<<<<< HEAD
+=======
+      <material name="black"/>
+>>>>>>> spawnrb2
     </visual>
 
     <collision>
@@ -172,7 +211,10 @@
     </collision>
   </link>
 
+<<<<<<< HEAD
   <!-- Joint connecting base_link and right_wheel -->
+=======
+>>>>>>> spawnrb2
   <joint name="base_link_right_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="right_wheel"/>
@@ -180,7 +222,11 @@
     <axis xyz="0 1 0"/>
   </joint>
 
+<<<<<<< HEAD
   <!-- Front caster -->
+=======
+  <!-- ===== Front caster ===== -->
+>>>>>>> spawnrb2
   <link name="front_caster">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -193,6 +239,10 @@
       <geometry>
         <cylinder radius="0.025" length="0.02"/>
       </geometry>
+<<<<<<< HEAD
+=======
+      <material name="gray"/>
+>>>>>>> spawnrb2
     </visual>
 
     <collision>
@@ -203,6 +253,7 @@
     </collision>
   </link>
 
+<<<<<<< HEAD
   <!-- Joint connecting base_link and front_caster -->
   <joint name="base_link_front_caster_joint" type="continuous">
     <parent link="base_link"/>
@@ -212,6 +263,15 @@
   </joint>
 
   <!-- Back caster -->
+=======
+  <joint name="base_link_front_caster_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_caster"/>
+    <origin xyz="-0.1 0.0 -0.15" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ===== Back caster ===== -->
+>>>>>>> spawnrb2
   <link name="back_caster">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -224,6 +284,10 @@
       <geometry>
         <cylinder radius="0.025" length="0.02"/>
       </geometry>
+<<<<<<< HEAD
+=======
+      <material name="gray"/>
+>>>>>>> spawnrb2
     </visual>
 
     <collision>
@@ -234,6 +298,7 @@
     </collision>
   </link>
 
+<<<<<<< HEAD
   <!-- Joint connecting base_link and back_caster -->
   <joint name="base_link_back_caster_joint" type="continuous">
     <parent link="base_link"/>
@@ -246,14 +311,94 @@
   <link name="front_laser"/>
 
   <!-- Differential Drive Plugin -->
+=======
+  <joint name="base_link_back_caster_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="back_caster"/>
+    <origin xyz="0.1 0.0 -0.15" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ===== Front laser link (visual + sensor for Gazebo Sim) ===== -->
+  <link name="front_laser">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.000252666666667" ixy="0" ixz="0" iyy="0.000252666666667" iyz="0" izz="0.0005"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.10"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.10"/>
+      </geometry>
+    </collision>
+
+    <!-- Gazebo Sim sensor (gpu_lidar) — publishes to /laser/scan -->
+    <gazebo>
+      <sensor name="front_laser_sensor" type="gpu_lidar">
+        <update_rate>10</update_rate>
+        <topic>laser/scan</topic>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.12</min>
+            <max>8.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+      </sensor>
+    </gazebo>
+  </link>
+
+  <joint name="base_link_front_laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_laser"/>
+    <origin xyz="0.8 0 0.3" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ===== Optional visual 'link' for laser geometry (kept removed to avoid duplicates) ===== -->
+
+  <!-- ===== Differential drive plugin for Gazebo Sim (Ignition) ===== -->
+>>>>>>> spawnrb2
   <gazebo>
     <plugin
       filename="libignition-gazebo-diff-drive-system.so"
       name="ignition::gazebo::systems::DiffDrive">
+<<<<<<< HEAD
       <left_joint>base_link_left_wheel_joint</left_joint>
       <right_joint>base_link_right_wheel_joint</right_joint>
       <wheel_separation>0.4</wheel_separation>
       <wheel_radius>0.025</wheel_radius>
+=======
+      <!-- joints must match your URDF joint names -->
+      <left_joint>base_link_left_wheel_joint</left_joint>
+      <right_joint>base_link_right_wheel_joint</right_joint>
+
+      <!-- realistic values matching wheel geometry above -->
+      <wheel_separation>0.40</wheel_separation>
+      <wheel_radius>0.025</wheel_radius>
+
+>>>>>>> spawnrb2
       <odom_publish_frequency>20</odom_publish_frequency>
       <topic>cmd_vel</topic>
       <odom_topic>odom</odom_topic>
@@ -263,6 +408,7 @@
     </plugin>
   </gazebo>
 
+<<<<<<< HEAD
   <!-- Gazebo tags - Laser scan and link -->
   <gazebo reference="joint_laser_scan_chassis">
     <preserveFixedJoint>true</preserveFixedJoint>
@@ -275,4 +421,6 @@
     <child link="front_laser" />
   </joint>
 
+=======
+>>>>>>> spawnrb2
 </robot>
