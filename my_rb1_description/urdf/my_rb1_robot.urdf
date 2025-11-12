@@ -19,10 +19,8 @@
     <color rgba="0 0 0 1"/>
   </material>
 
-  <!-- ===== Base footprint (self-closing link) ===== -->
   <link name="base_footprint"/>
 
-  <!-- ===== Joint connecting base_footprint -> base_link ===== -->
   <joint name="base_link_plate_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
@@ -198,11 +196,11 @@
       </geometry>
     </collision>
 
-    <!-- Gazebo Sim sensor (gpu_lidar) — publishes to /laser/scan -->
+    <!-- Gazebo Sim sensor publishes to /scan -->
     <gazebo>
       <sensor name="front_laser_sensor" type="gpu_lidar">
         <update_rate>10</update_rate>
-        <topic>laser/scan</topic>
+        <topic>scan</topic>
         <ray>
           <scan>
             <horizontal>
@@ -233,7 +231,7 @@
     <origin xyz="0.8 0 0.3" rpy="0 0 0"/>
   </joint>
 
-  <!-- ===== Optional visual 'link' for laser geometry (kept removed to avoid duplicates) ===== -->
+  
 
   <!-- ===== Differential drive plugin for Gazebo Sim (Ignition) ===== -->
   <gazebo>
@@ -244,7 +242,6 @@
       <left_joint>base_link_left_wheel_joint</left_joint>
       <right_joint>base_link_right_wheel_joint</right_joint>
 
-      <!-- realistic values matching wheel geometry above -->
       <wheel_separation>0.40</wheel_separation>
       <wheel_radius>0.025</wheel_radius>
 
