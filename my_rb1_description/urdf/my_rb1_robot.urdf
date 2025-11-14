@@ -5,8 +5,8 @@
 <gazebo reference="base_link">
     <visual>
         <material> <!-- Black -->
-            <ambient>0.1 0.1 0.1 1.0</ambient>
-            <diffuse>0.1 0.1 0.1 1.0</diffuse>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1.0</diffuse>
             <specular>0.0 0.0 0.0 1.0</specular>
             <emissive>0.0 0.0 0.0 1.0</emissive>
         </material>
@@ -19,8 +19,8 @@
         <surface>
             <friction>
                 <ode>
-                   <mu>0.0</mu>
-                   <mu2>0.0</mu2>
+                   <mu>5.0</mu>
+                   <mu2>0.5</mu2>
                 </ode>
             </friction>
         </surface>
@@ -33,8 +33,8 @@
         <surface>
             <friction>
                 <ode>
-                    <mu>0.0</mu>
-                    <mu2>0.0</mu2>
+                    <mu>5.0</mu>
+                    <mu2>0.5</mu2>
                 </ode>
             </friction>
         </surface>
@@ -47,8 +47,8 @@
         <surface>
             <friction>
                 <ode>
-                    <mu>0.0</mu>
-                    <mu2>0.0</mu2>
+                    <mu>5.0</mu>
+                    <mu2>0.5</mu2>
                 </ode>
             </friction>
         </surface>
@@ -61,8 +61,8 @@
         <surface>
             <friction>
                 <ode>
-                    <mu>0.0</mu>
-                    <mu2>0.0</mu2>
+                    <mu>5.0</mu>
+                    <mu2>0.5</mu2>
                 </ode>
             </friction>
         </surface>
@@ -310,6 +310,7 @@
             name="ignition::gazebo::systems::RosRaySensor">
             <topic>/scan</topic>
             <frame_name>front_laser</frame_name>
+            <render_engine>ogre2</render_engine>
         </plugin>
     </sensor>
 </gazebo>
