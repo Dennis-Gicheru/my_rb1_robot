@@ -15,8 +15,8 @@
     </include>
 
     <!-- Spawn Coordinates (center of yellow/black square) -->
-    <arg name="x" default="0.0"/>
-    <arg name="y" default="0.0"/>
+    <arg name="x" default="-0.3"/>
+    <arg name="y" default="-1.3"/>
     <arg name="z" default="0.1"/>
 
     <arg name="model_name" default="my_robot"/>
