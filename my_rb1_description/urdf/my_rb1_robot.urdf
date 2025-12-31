@@ -243,7 +243,30 @@
   </joint>
 
   <!-- Link representing the front laser scanner -->
-  <link name="front_laser"/>
+  <link name="front_laser">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.000145833" ixy="0" ixz="0" 
+               iyy="0.000145833" iyz="0" 
+               izz="0.000125"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.1"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.1"/>
+      </geometry>
+    </collision>
+  </link>
 
   <!-- Differential Drive Plugin -->
   <gazebo>
@@ -270,7 +293,7 @@
 
   <!-- Laser scan joint and link (single, corrected copy) -->
   <joint name="joint_laser_scan_chassis" type="fixed">
-    <origin rpy="0 0 0" xyz="0.8 0 0.3" />
+    <origin rpy="0 0 0" xyz="0.25 0 0.3" />
     <parent link="base_link" />
     <child link="front_laser" />
   </joint>
