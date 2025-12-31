@@ -13,6 +13,7 @@ def generate_launch_description():
     urdf_file = 'my_rb1_robot.urdf'
     robot_desc_path = os.path.join(package_directory, "urdf", urdf_file)
     print("URDF Loaded !")
+    rviz_config_path = os.path.join(package_directory, 'rviz', 'config.rviz')
 
     # Joint State Publisher GUI
     joint_state_publisher_gui = Node(
@@ -43,6 +44,7 @@ def generate_launch_description():
         output='screen',
         emulate_tty=True,
         parameters=[{'use_sim_time': True}],
+        arguments=['d', rviz_config_path]
     )
 
     # Return Launch Description
