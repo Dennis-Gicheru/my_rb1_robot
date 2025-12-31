@@ -4,7 +4,7 @@ from launch import LaunchDescription
 from launch.substitutions import Command
 from launch_ros.actions import Node
 
-# ROS2 Launch System will look for this function definition #
+
 def generate_launch_description():
 
     # Get Package Description and Directory #
@@ -16,7 +16,7 @@ def generate_launch_description():
     robot_desc_path = os.path.join(package_directory, "urdf", urdf_file)
     print("URDF Loaded !")
 
-    #Joint State Publisher GUI #
+    #Joint State Publisher GUI 
     joint_state_publisher_gui =Node(
             package='joint_state_publisher_gui',
             executable='joint_state_publisher_gui',
